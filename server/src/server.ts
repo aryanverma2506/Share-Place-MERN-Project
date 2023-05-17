@@ -30,13 +30,23 @@ app.use("/api/users", usersRoutes);
 app.use("*", errorControllers.routeNotFound);
 app.use(errorControllers.errorOccurred);
 
+// For Development
+// mongooseConnect()
+//   .then(() => {
+//     return app.listen(process.env.PORT || 8080, () =>
+//       console.log(
+//         `Server is listening on http://localhost:${process.env.PORT || 8080}/`
+//       )
+//     );
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+// For Production
 mongooseConnect()
   .then(() => {
-    return app.listen(process.env.PORT, () =>
-      console.log(
-        `Server is listening on http://localhost:${process.env.PORT}/`
-      )
-    );
+    return app.listen(process.env.PORT || 8080);
   })
   .catch((error) => {
     console.log(error);

@@ -48,9 +48,22 @@ app.use("/api/places", places_routes_1.default);
 app.use("/api/users", users_routes_1.default);
 app.use("*", errorControllers.routeNotFound);
 app.use(errorControllers.errorOccurred);
+// For Development
+// mongooseConnect()
+//   .then(() => {
+//     return app.listen(process.env.PORT || 8080, () =>
+//       console.log(
+//         `Server is listening on http://localhost:${process.env.PORT || 8080}/`
+//       )
+//     );
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+// For Production
 (0, database_1.default)()
     .then(() => {
-    return app.listen(process.env.PORT, () => console.log(`Server is listening on http://localhost:${process.env.PORT}/`));
+    return app.listen(process.env.PORT || 8080);
 })
     .catch((error) => {
     console.log(error);
