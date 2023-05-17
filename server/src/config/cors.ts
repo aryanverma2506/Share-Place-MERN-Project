@@ -10,7 +10,6 @@ export default function cors(
 
   allowedOrigins.includes(origin) &&
     res.setHeader("Access-Control-Allow-Origin", origin);
-  res.setHeader("Access-Control-Allow-Origin", origin!);
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Headers",
