@@ -62,7 +62,7 @@ export const createPlace: RequestHandler = async (req, res, next) => {
   }
 
   const { title, description, address, latitude, longitude } = req.body;
-  const coordinates = [longitude, latitude];
+  const coordinates = { latitude, longitude };
   try {
     const createdPlace = new PlaceModel({
       title,

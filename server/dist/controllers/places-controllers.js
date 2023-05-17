@@ -71,7 +71,7 @@ const createPlace = async (req, res, next) => {
         return next(new http_error_1.default("Invalid inputs passed, please check your data.", 422));
     }
     const { title, description, address, latitude, longitude } = req.body;
-    const coordinates = [longitude, latitude];
+    const coordinates = { latitude, longitude };
     try {
         const createdPlace = new place_model_1.default({
             title,

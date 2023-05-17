@@ -6,7 +6,7 @@ export interface PlaceDocument extends Document {
   description: string;
   image: string;
   address: string;
-  location: [Number, Number];
+  location: { latitude: Number; longitude: Number };
   creator: UserDocument;
 }
 
@@ -29,8 +29,18 @@ const placeSchema = new Schema<PlaceDocument>(
       required: true,
     },
     location: {
-      type: [Number, Number],
+      type: {
+        latitude: {
+          type: Number,
+          required: true,
+        },
+        longitude: {
+          type: Number,
+          required: true,
+        },
+      },
       required: true,
+      _id: false,
     },
     creator: {
       type: Types.ObjectId,

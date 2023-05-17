@@ -19,8 +19,18 @@ const placeSchema = new mongoose_1.Schema({
         required: true,
     },
     location: {
-        type: [Number, Number],
+        type: {
+            latitude: {
+                type: Number,
+                required: true,
+            },
+            longitude: {
+                type: Number,
+                required: true,
+            },
+        },
         required: true,
+        _id: false,
     },
     creator: {
         type: mongoose_1.Types.ObjectId,
