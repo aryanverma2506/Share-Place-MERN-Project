@@ -1,4 +1,5 @@
 **/node_modules/
 **/*.env
 **/*.env.production
-**/*nodemon.json
+**/nodemon.json
+**/package-lock
