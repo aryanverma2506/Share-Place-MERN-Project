@@ -13,8 +13,9 @@ import cors from "./config/cors";
 import * as errorControllers from "./controllers/error-controllers";
 
 const app = express();
-const allowedOrigins =
-  process.env.CLIENT_URLS?.split(",").map((url) => url.trim()) || [];
+const allowedOrigins = process.env.CLIENT_URLS?.split(",").map((url) =>
+  url.trim()
+);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
