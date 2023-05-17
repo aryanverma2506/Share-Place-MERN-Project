@@ -2,4 +2,4 @@
 **/*.env
 **/*.env.production
 **/nodemon.json
-**/package-lock
+**/package-lock.json
