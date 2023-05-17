@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express-serve-static-core";
 export default function cors(config?: { origin?: string[] }) {
   return (req: Request, res: Response, next: NextFunction) => {
     const origin = req.headers.origin;
+    console.log(origin);
 
     if (origin && config?.origin?.includes(origin)) {
       res.setHeader("Access-Control-Allow-Origin", origin);

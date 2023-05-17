@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function cors(config) {
     return (req, res, next) => {
         const origin = req.headers.origin;
+        console.log(origin);
         if (origin && config?.origin?.includes(origin)) {
             res.setHeader("Access-Control-Allow-Origin", origin);
         }
