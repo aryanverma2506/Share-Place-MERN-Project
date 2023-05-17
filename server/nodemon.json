@@ -1,0 +1,9 @@
+{
+  "env": {
+    "PORT": 8080,
+    "API_kEY": "xyz",
+    "CLIENT_URL": "http://localhost:3000",
+    "MONGODB_URI": "mongodb+srv://completeNodeGuide:e7S9ME6cXDU3XUQE@cluster0.08pm440.mongodb.net/mern?retryWrites=true&w=majority",
+    "JWT_SECRET_MSG": "ThisIsASuperSecretMessageAllLifeDependsOnIt"
+  }
+}
