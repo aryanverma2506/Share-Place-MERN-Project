@@ -1,7 +1,16 @@
 import { Request, Response, NextFunction } from "express-serve-static-core";
 
-export default function cors(req: Request, res: Response, next: NextFunction) {
-  res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL!);
+export default function cors(
+  allowedOrigins: string[],
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const origin = req.headers.origin!;
+
+  allowedOrigins.includes(origin) &&
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  res.setHeader("Access-Control-Allow-Origin", origin!);
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Headers",

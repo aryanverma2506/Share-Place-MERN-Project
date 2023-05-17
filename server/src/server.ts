@@ -13,16 +13,18 @@ import cors from "./config/cors";
 import * as errorControllers from "./controllers/error-controllers";
 
 const app = express();
+const allowedOrigins =
+  process.env.CLIENT_URLS?.split(",").map((url) => url.trim()) || [];
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
+app.use(cors.bind(allowedOrigins));
+
 app.use(
   "/shared/uploads",
   express.static(path.join(__dirname, "../shared/uploads"))
 );
-
-app.use(cors);
 
 app.use("/api/places", placesRoutes);
 app.use("/api/users", usersRoutes);
