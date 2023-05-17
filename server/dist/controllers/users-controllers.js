@@ -46,6 +46,7 @@ const signup = async (req, res, next) => {
             .cookie("token", token, {
             httpOnly: true,
             maxAge: expirationTimeInMs,
+            secure: true,
         })
             .json({ userId: createdUser.id, email: createdUser.email, token: token });
     }
@@ -71,6 +72,7 @@ const login = async (req, res, next) => {
             .cookie("token", token, {
             httpOnly: true,
             maxAge: expirationTimeInMs,
+            secure: true,
         })
             .json({
             userId: existingUser.id,
