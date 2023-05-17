@@ -15,12 +15,11 @@ import * as errorControllers from "./controllers/error-controllers";
 const app = express();
 const allowedOrigins =
   process.env.CLIENT_URLS?.split(",").map((url) => url.trim()) || [];
-console.log(allowedOrigins);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
-app.use(cors.bind(allowedOrigins));
+app.use(cors({ origin: allowedOrigins }));
 
 app.use(
   "/shared/uploads",
