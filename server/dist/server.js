@@ -40,6 +40,7 @@ const cors_1 = __importDefault(require("./config/cors"));
 const errorControllers = __importStar(require("./controllers/error-controllers"));
 const app = (0, express_1.default)();
 const allowedOrigins = process.env.CLIENT_URLS?.split(",").map((url) => url.trim()) || [];
+console.log(allowedOrigins);
 app.use(body_parser_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use((0, morgan_1.default)("dev"));
