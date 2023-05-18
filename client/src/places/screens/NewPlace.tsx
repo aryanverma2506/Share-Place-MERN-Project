@@ -84,8 +84,8 @@ function NewPlace(): React.ReactElement {
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
+      {isLoading && <LoadingSpinner asOverlay />}
       <form className={`${styles["place-form"]}`} onSubmit={placeSubmitHandler}>
-        {isLoading && <LoadingSpinner asOverlay />}
         <ImageUpload
           id="image"
           center
