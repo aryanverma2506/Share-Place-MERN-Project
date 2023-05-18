@@ -1,4 +1,5 @@
-#Share-Place-MERN-Project
+# Share-Place-MERN-Project
+
 This MERN (MongoDB, Express.js, React.js, Node.js) project allows users to share places with each other. It is divided into two parts:
 
 ---
