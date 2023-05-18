@@ -8,7 +8,8 @@ This MERN (MongoDB, Express.js, React.js, Node.js) project allows users to share
 
 - **client**: Contains the client-side code for the single-page application (SPA).
 - **server**: Contains the server-side code for the REST APIs.
-- **Link**: [CLICK HERE](https://share-place-mern-client.web.app/)
+- **Link 1**: [CLICK HERE](https://share-place-mern-client.web.app/)
+- **Link 2**: [CLICK HERE](https://share-place-mern-client.firebaseapp.com/)
 
 ### 2. Combined Web App (share-place-combined):
 
