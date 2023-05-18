@@ -5,5 +5,8 @@ export interface PlaceModel {
   address: string;
   creator: string | number;
   description: string;
-  location: [number, number];
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 }

@@ -1,37 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+import ReactMapboxGl, {
+  GeolocateControl,
+  Marker,
+  FullscreenControl,
+  NavigationControl,
+} from "react-map-gl";
 import mapboxgl from "mapbox-gl";
 
 import styles from "./Map.module.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN!;
+const accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN!;
 
 interface MapProps extends React.PropsWithChildren {
   title: string;
   zoom: number;
-  center: [number, number];
+  coordinates: {
+    longitude: number;
+    latitude: number;
+  };
   className?: string;
   style?: Object;
 }
 
 function Map(props: MapProps): React.ReactElement {
-  const mapContainer = useRef<HTMLDivElement | null>(null);
-  const [mapView, setMapView] = useState<string>("outdoors-v12");
-
-  const { title, center, zoom } = props;
-
-  useEffect(() => {
-    if (mapContainer.current) {
-      const map = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: `mapbox://styles/mapbox/${mapView}`,
-        center: center,
-        zoom: zoom,
-      });
-      const marker = new mapboxgl.Marker().setLngLat(center).addTo(map);
-      const popup = new mapboxgl.Popup().setHTML(title);
-      marker.setPopup(popup);
-    }
-  }, [mapView, title, center, zoom]);
+  const [mapView, setMapView] = useState<string>("streets-v12");
+  const popup = new mapboxgl.Popup().setHTML(props.title);
 
   function mapViewHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     setMapView(() => event.target.value);
@@ -39,14 +33,29 @@ function Map(props: MapProps): React.ReactElement {
 
   return (
     <>
-      <div
-        className={`${styles.map} ${props.className}`}
-        style={props.style}
-        ref={mapContainer}
-      ></div>
+      <div className={`${styles.map} ${props.className}`} style={props.style}>
+        <ReactMapboxGl
+          mapboxAccessToken={accessToken}
+          initialViewState={{
+            latitude: props.coordinates.latitude,
+            longitude: props.coordinates.longitude,
+            zoom: props.zoom,
+          }}
+          mapStyle={`mapbox://styles/mapbox/${mapView}`}
+        >
+          <Marker
+            latitude={props.coordinates.latitude}
+            longitude={props.coordinates.longitude}
+            popup={popup}
+          />
+          <FullscreenControl />
+          <GeolocateControl position="bottom-left" />
+          <NavigationControl position="bottom-right" />
+        </ReactMapboxGl>
+      </div>
       <select
         className={`${styles["map-menu"]}`}
-        defaultValue={"outdoors-v12"}
+        defaultValue={mapView}
         onChange={mapViewHandler}
       >
         <option value="satellite-streets-v12">Satellite Streets</option>

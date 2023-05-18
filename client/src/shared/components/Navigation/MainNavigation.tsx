@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import MainHeader from "./MainHeader";
@@ -9,6 +9,20 @@ import styles from "./MainNavigation.module.css";
 
 function MainNavigation(): React.ReactElement {
   const [drawerIsOpen, setDrawerIsOpen] = useState<boolean>(false);
+
+  const handleWindowResize = useCallback(() => {
+    if (drawerIsOpen && window.innerWidth >= 768) {
+      setDrawerIsOpen(() => false);
+    }
+  }, [drawerIsOpen]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [handleWindowResize]);
 
   function openDrawerHandler(): void {
     setDrawerIsOpen(() => true);

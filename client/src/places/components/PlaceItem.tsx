@@ -19,7 +19,10 @@ interface PlaceItemProps extends React.PropsWithChildren {
   image: string;
   address: string;
   creatorId: string | number;
-  coordinates: [number, number];
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
   description: string;
   onDelete: (id: string | number) => void;
 }
@@ -74,7 +77,7 @@ function PlaceItem(props: PlaceItemProps): React.ReactElement {
         footerClass={`${styles["place-item__modal-actions"]}`}
       >
         <div className={`${styles["map-container"]}`}>
-          <Map title={props.title} center={props.coordinates} zoom={15} />
+          <Map title={props.title} coordinates={props.coordinates} zoom={15} />
         </div>
       </Modal>
       {authCtx.userId === props.creatorId && (

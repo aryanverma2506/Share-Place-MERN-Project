@@ -91,7 +91,6 @@ function Auth(): React.ReactElement {
           }),
         });
 
-        console.log(responseData);
         authCtx.login(responseData.userId, responseData.token, undefined);
       } catch (error: any) {
         console.log(error);
@@ -109,7 +108,6 @@ function Auth(): React.ReactElement {
           body: formData,
         });
 
-        console.log(responseData);
         authCtx.login(responseData.userId, responseData.token, undefined);
       } catch (error: any) {
         console.log(error);
