@@ -1,0 +1,8 @@
+{
+  "env": {
+    "PORT": 3000,
+    "API_kEY": "xyz",
+    "MONGODB_URI": "YOUR_MONGO_DATABASE_URI",
+    "JWT_SECRET_MSG": "it_should_be_long_and_secret"
+  }
+}
